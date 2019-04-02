@@ -16,6 +16,20 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+#for static files in development mode
+from django.conf import settings
+from django.conf.urls.static import static
+
+#application
+from shopapp.views import main
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', main, name='main'),
 ]
+
+#for development mode
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
