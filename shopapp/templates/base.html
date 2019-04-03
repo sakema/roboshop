@@ -6,7 +6,37 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
   </head>
+
   <body>
-    <h1>Roboshop</h1>
+    <section id="header">
+      <div class="top container">
+        Roboshop
+      </div>
+      <div class="top-bl">
+        <div class="container">
+          <div class="cart">Ваша корзина пуста</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+    {% for category in categories %}
+    <a href="#" class="">{{ category.name }}</a>
+    {% endfor %}
+    </div>
+
+    <section id="content row" class="container">
+    {% for product in products %}
+    <div class="thumbnail">
+      <img src="{{ product.image.url }}" width="210" height="280">
+      <h4><a href="#">{{ product.title }}</a></h4>
+      <h4>{{ product.price }} Rs</h4>
+
+    </div>
+    {% endfor %}
+    </section>
+
+
   </body>
+
 </html>
