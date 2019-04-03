@@ -15,6 +15,10 @@ class Brand(models.Model):
     def __str__(self):
         return self.name
 
+#def image_folder(instance, filename):
+#    filename = instance.slug + '.' + os.path.splitext(filename)[1]
+#    return "{0}/{1}".format[instance.slug, filename]
+
 class Product(models.Model):
     category = models.ForeignKey(Category, models.SET_NULL, blank=True, null=True)
     brand = models.ForeignKey(Brand, models.SET_NULL, blank=True, null=True)
@@ -23,7 +27,10 @@ class Product(models.Model):
     description = models.TextField(blank=True)
     image = models.ImageField(blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
+    stock = models.PositiveIntegerField(null=True, blank=True)
     available = models.BooleanField(default=True)
+    created = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.title
